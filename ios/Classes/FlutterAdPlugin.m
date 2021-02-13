@@ -3,10 +3,7 @@
 #import <Foundation/Foundation.h>
 #import <AppTrackingTransparency/AppTrackingTransparency.h>
 #import <AdSupport/ASIdentifierManager.h>
-@interface FlutterAdPlugin()<FlutterStreamHandler>{
-    NSObject<FlutterPluginRegistrar> *_registrar;
-      FlutterViewController *_controller;
-}
+@interface FlutterAdPlugin()<FlutterStreamHandler>
 
 @property (nonatomic, strong) FlutterEventSink eventSink;
 
@@ -16,37 +13,15 @@
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
   FlutterMethodChannel* channel = [FlutterMethodChannel methodChannelWithName:@"flutter_ad_plugin"  binaryMessenger:[registrar messenger]];
-    FlutterAdPlugin* instance = [[FlutterAdPlugin alloc] newInstance:registrar flutterViewController:nil];
+    FlutterAdPlugin* instance = [[FlutterAdPlugin alloc] init];
     [registrar addApplicationDelegate:instance];
     [registrar addMethodCallDelegate:instance channel:channel];
     FlutterEventChannel *eventChannel = [FlutterEventChannel
          eventChannelWithName:@"flt_ad_plugin_event"
          binaryMessenger:[registrar messenger]];
-    
-    
-    
-    [eventChannel setStreamHandler:instance];
-    
-}
-+ (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar flutterViewController:(FlutterViewController*) controller {
-    FlutterMethodChannel* channel = [FlutterMethodChannel methodChannelWithName:@"flutter_ad_plugin"  binaryMessenger:[registrar messenger]];
-      //FlutterAdPlugin* instance = [[FlutterAdPlugin alloc] init];
-      FlutterAdPlugin* instance = [[FlutterAdPlugin alloc] newInstance:registrar flutterViewController:controller];
-      [registrar addApplicationDelegate:instance];
-      [registrar addMethodCallDelegate:instance channel:channel];
-      FlutterEventChannel *eventChannel = [FlutterEventChannel
-           eventChannelWithName:@"flt_ad_plugin_event"
-           binaryMessenger:[registrar messenger]];
-      
-        [eventChannel setStreamHandler:instance];
-        [registrar addMethodCallDelegate:instance channel:channel];
-}
- 
-- (instancetype)newInstance:(NSObject<FlutterPluginRegistrar>*)registrar flutterViewController:(FlutterViewController*) controller{
-  _registrar = registrar;
-  _controller = controller;
-  return self;
-}
+    [eventChannel setStreamHandler:instance];}
+
+
 #pragma mark - FlutterStreamHandler
 - (FlutterError *)onListenWithArguments:(id)arguments eventSink:(FlutterEventSink)events {
     self.eventSink = events;
@@ -106,8 +81,8 @@
 }
 - (void)jumpAdList:(NSDictionary *)args result:(FlutterResult)result {
     NSString *host = [self getStringValueFromArgs:args forKey:@"cid"];
-    
-    [DyAdApi presentListViewController:_controller userId:@"88889999" advertType:0];    result([self resultSuccess:@"init success"]);
+    FlutterViewController * view = [[FlutterViewController alloc] init];
+    [DyAdApi presentListViewController:view userId:@"88889999" advertType:0];    result([self resultSuccess:@"init success"]);
 }
 - (NSDictionary *)_buildResult:(int)code message:(NSString *)message data:(id)data {
     if (data) {
