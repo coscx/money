@@ -168,7 +168,7 @@ class FlutterAdPlugin: FlutterPlugin, MethodCallHandler ,DefaultLifecycleObserve
  private fun  adInit() {
    DyAdApi.getDyAdApi().init(context,"dy_59633678", "ee0a8ee5de2ce442c8b094410440ec8c", "channel");
    try {
-     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+     if (Build.VERSION.SDK_INT >= 29) {
        val miitHelper = MiitHelper(object : AppIdsUpdater {
          override fun OnIdsAvalid(ids: String?) {
              Log.i("json", "oaid = $ids")
