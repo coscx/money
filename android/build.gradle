@@ -83,23 +83,7 @@ dependencies {
     //implementation 'com.tradplusad:tradplus-googlex:2.6.4.0.1'
      //Pangle (国内)
     implementation 'com.tradplusad:tradplus-toutiao:17.6.4.0.1'
-    // Mintegral
-    implementation 'com.tradplusad:tradplus-mintegralx_cn:18.6.4.0.1'
-    implementation 'com.mbridge.msdk.china:videojs:15.5.12'
-    implementation 'com.mbridge.msdk.china:mbjscommon:15.5.12'
-    implementation 'com.mbridge.msdk.china:playercommon:15.5.12'
-    implementation 'com.mbridge.msdk.china:reward:15.5.12'
-    implementation 'com.mbridge.msdk.china:videocommon:15.5.12'
-    implementation 'com.mbridge.msdk.china:chinasame:15.5.12'
-    implementation 'com.mbridge.msdk.china:interstitialvideo:15.5.12'
-    implementation 'com.mbridge.msdk.china:mbnative:15.5.12'
-    implementation 'com.mbridge.msdk.china:nativeex:15.5.12'
-    implementation 'com.mbridge.msdk.china:mbsplash:15.5.12'
-    implementation 'com.mbridge.msdk.china:interstitial:15.5.12'
-    implementation 'com.mbridge.msdk.china:mbbanner:15.5.12'
-    implementation 'com.mbridge.msdk.china:interactiveads:15.5.12'
-    implementation 'com.mbridge.msdk.china:mbnativeadvanced:15.5.12'
-    implementation 'com.mbridge.msdk.china:mbbid:15.5.12'
+
      //Sigmob
     implementation 'com.tradplusad:tradplus-sigmob:21.6.4.0.1'
      //Youdao
