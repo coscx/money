@@ -7,12 +7,13 @@ buildscript {
         google()
         jcenter()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
         // Juliang
         maven {  url "http://nexus.deemob.com/repository/maven-public/" }
         maven {
             url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_china"
         }
-        maven { url 'https://jitpack.io' }
+
     }
 
     dependencies {
@@ -24,14 +25,16 @@ buildscript {
 rootProject.allprojects {
     repositories {
         google()
+        jcenter()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
         // Juliang
         maven {  url "http://nexus.deemob.com/repository/maven-public/" }
         maven {
             url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_china"
         }
-        jcenter()
-        maven { url 'https://jitpack.io' }
+
+
     }
 }
 
