@@ -12,6 +12,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import com.coscx.flutter_ad_plugin.MiitHelper.AppIdsUpdater
 import com.duoyou.task.openapi.DyAdApi
+import com.tradplus.ads.base.bean.TPAdError
+import com.tradplus.ads.base.bean.TPAdInfo
+import com.tradplus.ads.open.LoadAdEveryLayerListener
+import com.tradplus.ads.open.TradPlusSdk
+import com.tradplus.ads.open.reward.TPReward
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -43,7 +48,7 @@ class FlutterAdPlugin: FlutterPlugin, MethodCallHandler ,DefaultLifecycleObserve
 
   protected var groupID: Long = 0
   protected var groupName: String? = null
-
+  private val TAG = FlutterAdPlugin::class.java.simpleName
   fun initInstance(messeger: BinaryMessenger?, context: Context?) {
     channel = MethodChannel(messeger, "flutter_ad_plugin")
     channel.setMethodCallHandler(this)
@@ -59,6 +64,9 @@ class FlutterAdPlugin: FlutterPlugin, MethodCallHandler ,DefaultLifecycleObserve
     when (call.method) {
       "init" -> {
         init(call.arguments, result)
+      }
+      "initTradePlus" -> {
+        initTradePlus(call.arguments, result)
       }
       "getPlatformVersion" -> {
         getPlatformVersion(call.arguments, result);
@@ -81,6 +89,29 @@ class FlutterAdPlugin: FlutterPlugin, MethodCallHandler ,DefaultLifecycleObserve
   }
   private fun init(arg: Any, result: Result) {
     adInit()
+    result.success(resultSuccess("init success"))
+  }
+  private fun initTradePlus(arg: Any, result: Result) {
+    TradPlusSdk.initSdk(context,"APPID");
+    val mTpReward = TPReward(context, "AdUnitId", true)
+    //高级用法
+
+    //高级用法
+    mTpReward.setAllAdLoadListener(object : LoadAdEveryLayerListener {
+      override fun onAdAllLoaded(b: Boolean) {
+        Log.i(TAG, "onAdAllLoaded: 该广告位下所有广告加载结束，是否有广告加载成功 ：$b")
+      }
+
+      override fun oneLayerLoadFailed(tpAdError: TPAdError, tpAdInfo: TPAdInfo) {
+        Log.i(TAG, "oneLayerLoadFailed:  广告" + tpAdInfo.adSourceName + " 加载失败，code :: " +
+                tpAdError.errorCode + " , Msg :: " + tpAdError.errorMsg)
+      }
+
+      override fun oneLayerLoaded(tpAdInfo: TPAdInfo) {
+        //每次调用load，TradPlus广告位下load成功的广告源都会被回调
+        Log.i(TAG, "oneLayerLoaded:  广告" + tpAdInfo.adSourceName + " 加载成功")
+      }
+    })
     result.success(resultSuccess("init success"))
   }
   fun resultSuccess(data: Any?): Any? {

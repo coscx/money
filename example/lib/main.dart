@@ -33,6 +33,7 @@ class _MyAppState extends State<MyApp> {
     // }
     try {
       platformVersion = await FlutterAdPlugin().init;
+      platformVersion = await FlutterAdPlugin().initTradePlus;
     } on PlatformException {
      // platformVersion = 'Failed to init.';
     }

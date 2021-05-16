@@ -49,4 +49,11 @@ class FlutterAdPlugin {
     });
     return Map.from(version) ;
   }
+
+  Future< Map<String ,dynamic>> get initTradePlus async {
+    var version = await _methodChannel.invokeMethod('initTradePlus', {
+      'cid': "cid",
+    });
+    return Map.from(version) ;
+  }
 }
