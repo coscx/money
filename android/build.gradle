@@ -76,7 +76,7 @@ dependencies {
     //implementation 'com.google.android.gms:play-services-ads:20.0.0'
     //implementation 'com.tradplusad:tradplus-googlex:2.6.4.0.1'
     //Pangle (国内)
-    implementation 'com.tradplusad:tradplus-toutiao:17.6.4.0.1'
+    //implementation 'com.tradplusad:tradplus-toutiao:17.6.4.0.1'
 
     // Mintegral
     implementation 'com.tradplusad:tradplus-mintegralx_cn:18.6.4.0.1'
@@ -111,7 +111,7 @@ dependencies {
     //国内需要同时引入
     implementation 'com.tradplusad:tradplus-china_plugin:6.4.0.1'
     implementation project(path: ':GDTSDK.unionNormal.4.351.1221')
-    implementation project(path: ':open_ad_sdk_cn_v3.6.1.0')
+    //implementation project(path: ':open_ad_sdk_cn_v3.6.1.0')
 //    implementation project(path: ':flutter_plugin_android_lifecycle')
 //    implementation fileTree(dir: 'libs', include: ['*.jar'])
     //implementation (name:'dy-task-sdk-2.0.5', ext: 'aar')
