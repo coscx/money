@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
     //  // platformVersion = 'Failed to get platform version.';
     // }
     try {
-      platformVersion = await FlutterAdPlugin.init;
+      platformVersion = await FlutterAdPlugin().init;
     } on PlatformException {
      // platformVersion = 'Failed to init.';
     }
@@ -62,7 +62,7 @@ class _MyAppState extends State<MyApp> {
                 Icons.backup,
               ), onPressed:() async {
                 try {
-                  await FlutterAdPlugin.jumpAdList;
+                  await FlutterAdPlugin().jumpAdList;
                 } on PlatformException {
                   // platformVersion = 'Failed to init.';
                 }

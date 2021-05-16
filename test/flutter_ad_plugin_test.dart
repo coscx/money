@@ -18,6 +18,6 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await FlutterAdPlugin.platformVersion, '42');
+    expect(await FlutterAdPlugin().platformVersion, '42');
   });
 }
