@@ -81,8 +81,8 @@
 }
 - (void)jumpAdList:(NSDictionary *)args result:(FlutterResult)result {
     NSString *host = [self getStringValueFromArgs:args forKey:@"cid"];
-    FlutterViewController * view = [[FlutterViewController alloc] init];
-    [DyAdApi presentListViewController:view userId:@"88889999" advertType:0];    result([self resultSuccess:@"init success"]);
+     UIViewController *rootVC = [[UIApplication sharedApplication].delegate window].rootViewController;
+    [DyAdApi presentListViewController:rootVC userId:@"88889999" advertType:0];    result([self resultSuccess:@"init success"]);
 }
 - (NSDictionary *)_buildResult:(int)code message:(NSString *)message data:(id)data {
     if (data) {
